@@ -1,7 +1,6 @@
 import React from 'react';
 import { ConnectedExample } from './components/Example';
 import './App.css';
-import React from 'react';
 import SidePanel from './components/sidePanel/SidePanelComponent';
 
 function App() {
