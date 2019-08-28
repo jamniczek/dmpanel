@@ -1,15 +1,17 @@
-import React from 'react';
-import { ConnectedExample } from './components/Example';
-import './App.css';
-import SidePanel from './components/sidePanel/SidePanelComponent';
+import React from "react";
+import { ConnectedExample } from "./components/Example";
+import "./App.css";
+import SidePanel from "./components/sidePanel/SidePanelComponent";
 
 function App() {
   return (
     <div className="App">
-      <ConnectedExample />
-      <header className="App-header">
-        <SidePanel></SidePanel>
-      </header>
+      <div className="container">
+        <ConnectedExample />
+        <div className="col-sm-4 offset-sm-8">
+          <SidePanel />
+        </div>
+      </div>
     </div>
   );
 }
