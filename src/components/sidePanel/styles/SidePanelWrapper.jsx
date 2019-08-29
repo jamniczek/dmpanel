@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import bg from "../assets/parchment-bg.jpg";
+import { defaultBorderRadius } from "../../common/styles/mixins";
 
 export default styled.section`
-  border: 1px solid;
-  border-radius: 10px;
+  ${defaultBorderRadius}
+  background: url(${bg});
+  min-height: 300px;
+  background-size: cover;
+  background-repeat: none;
 `;

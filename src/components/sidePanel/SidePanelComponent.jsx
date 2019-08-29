@@ -2,21 +2,46 @@ import React, { Component } from "react";
 import Konva from "konva";
 import SidePanelWrapper from "./styles/SidePanelWrapper";
 import { Stage, Layer, Rect, Text, Circle, Line } from "react-konva";
+import OptionButtons from "./components/OptionButtons/OptionButtonsComponent";
+import GenericToken from "../common/tokens/GenericToken";
 
 export default class SidePanel extends Component {
-  state = {
-    herebenothing: false
-  };
-  sideWrapper = React.createRef();
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: 0,
+      height: 750,
+      tokens: []
+    };
+    this.sideWrapper = React.createRef();
+    this.addToken = this.addToken.bind(this);
+  }
 
-  componentDidMount() {}
+  addToken() {
+    const { tokens, width, height } = this.state;
+    tokens.push(<GenericToken x={width / 2} y={height / 2} />);
+    this.setState({ tokens });
+  }
+
+  componentDidMount() {
+    const { height, width } = this.sideWrapper.current.getBoundingClientRect();
+    this.setState({ height, width });
+  }
 
   render() {
-    const { renderWidth = 300, renderHeight = 600 } = this.props;
+    const { width, height, tokens } = this.state;
     return (
       <SidePanelWrapper ref={this.sideWrapper}>
-        <Stage width={renderWidth} height={renderHeight}>
-          <Layer></Layer>
+        <OptionButtons addToken={this.addToken} />
+        <Stage width={width} height={height}>
+          {tokens.map(token => {
+            const { width, height, x, y } = token;
+            return (
+              <Layer width={width} height={height} draggable x={x} y={y}>
+                {token}
+              </Layer>
+            );
+          })}
         </Stage>
       </SidePanelWrapper>
     );
