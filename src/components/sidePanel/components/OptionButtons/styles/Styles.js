@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { defaultBorderRadius } from "../../../../common/styles/mixins";
-import { slightMovement } from "../../../../common/styles/keyframes/keyframes";
+import styled from 'styled-components';
+import { defaultBorderRadius } from '../../../../common/styles/mixins';
+import { slightMovement } from '../../../../common/styles/keyframes/keyframes';
 
 export const Container = styled.div`
   ${defaultBorderRadius}

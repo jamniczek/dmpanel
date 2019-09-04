@@ -1,13 +1,13 @@
-import React from "react";
-import Konva from "konva";
-import { Circle } from "react-konva";
+import React from 'react';
+import Konva from 'konva';
+import { Circle } from 'react-konva';
 
 const Token = ({
   x,
   y,
   radius = 20,
-  fill = "white",
-  stroke = "black",
+  fill = 'white',
+  stroke = 'black',
   strokeWidth = 2
 }) => {
   return (
