@@ -7,5 +7,5 @@ export default styled.section`
   background: url(${bg});
   min-height: 300px;
   background-size: cover;
-  background-repeat: none;
+  max-height: 1000px;
 `;

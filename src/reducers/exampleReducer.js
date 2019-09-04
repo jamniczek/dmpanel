@@ -1,7 +1,7 @@
-import { SET_TEXT } from '../actions/actionTypes';
+import { SET_TEXT } from "../actions/actionTypes";
 
 const initialState = {
-  text: ''
+  text: ""
 };
 
 const exampleReducer = (state = initialState, { type, text }) => {

@@ -3,7 +3,7 @@ import { Container, Button } from "./styles/Styles";
 
 class ActionButtons extends Component {
   render() {
-    const { addToken } = this.props;
+    const { toggleModal } = this.props;
     return (
       <Container>
         <Button
@@ -13,7 +13,9 @@ class ActionButtons extends Component {
           onMouseOut={evt => {
             evt.target.classList.remove("mouseOver");
           }}
-          onClick={() => addToken()}
+          onClick={() => {
+            toggleModal("addToken");
+          }}
         >
           <span>Create Token</span>
         </Button>

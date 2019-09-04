@@ -1,25 +1,51 @@
-import React from "react";
-import Konva from "konva";
+import React, { Component } from "react";
+
 import { Circle } from "react-konva";
 
-const Token = ({
-  x,
-  y,
-  radius = 20,
-  fill = "white",
-  stroke = "black",
-  strokeWidth = 2
-}) => {
-  return (
-    <Circle
-      x={x}
-      y={y}
-      radius={radius}
-      fill={fill}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-    />
-  );
-};
+class GenericToken extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.onDragEnd = this.onDragEnd.bind(this);
+    this.ref = React.createRef();
+  }
 
-export default Token;
+  componentDidMount() {
+    const { onMouseOver, ...props } = this.props;
+    this.setState({ ...props });
+  }
+
+  onDragEnd(e) {
+    const {
+      currentTarget: {
+        attrs: { x, y }
+      }
+    } = e;
+    this.setState(state => {
+      this.takeStateDump();
+      return { ...state, x, y };
+    });
+  }
+
+  takeStateDump() {
+    console.log(this.state);
+  }
+
+  render() {
+    const { Component, onMouseOver, ...rest } = this.props;
+    return (
+      <>
+        <Circle
+          ref={this.ref}
+          onMouseOver={evt => {
+            return onMouseOver(evt, this.state, this.ref);
+          }}
+          onDragEnd={this.onDragEnd}
+          {...rest}
+        />
+      </>
+    );
+  }
+}
+
+export default GenericToken;
