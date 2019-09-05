@@ -3,6 +3,7 @@ import { Stage, Layer } from 'react-konva';
 import { connect } from 'react-redux';
 import { appendRect, resizeRect } from '../../actions/rectActions';
 import { Cover } from './Cover';
+import uuid from 'uuid';
 
 class Map extends PureComponent {
   handleMouseDown = (event) => {
@@ -10,7 +11,7 @@ class Map extends PureComponent {
     const { dispatch } = this.props;
     const { clientX, clientY } = event.evt;
     dispatch(
-      appendRect({ x: clientX, y: clientY, width: 0, height: 0, id: 'test' })
+      appendRect({ x: clientX, y: clientY, width: 0, height: 0, id: uuid() })
     );
   };
 
@@ -27,7 +28,7 @@ class Map extends PureComponent {
         width={960}
         height={540}
         onMouseDown={this.handleMouseDown}
-        onMouseUp={(event) => console.log(event.evt.clientX, event.evt.clientY)}
+        onMouseUp={this.handleMouseUp}
       >
         <Layer>
           {this.props.rects.map(({ x, y, width, height }) => (
