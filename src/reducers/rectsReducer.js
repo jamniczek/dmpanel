@@ -1,37 +1,29 @@
-import uuid from 'uuid';
-import { APPEND_RECT, RESIZE_RECT } from '../actions/actionTypes';
+import {
+  CREATE_RECT,
+  RESIZE_RECT,
+  APPEND_RECT,
+  REMOVE_RECTS
+} from '../actions/actionTypes';
 
 const initialState = {
-  rects: [
-    { x: 0, y: 0, width: 100, height: 100, id: uuid() },
-    { x: 110, y: 0, width: 100, height: 100, id: uuid() },
-    { x: 220, y: 0, width: 100, height: 100, id: uuid() },
-    { x: 330, y: 0, width: 100, height: 100, id: uuid() }
-  ],
+  rects: [],
   currentRectId: ''
 };
 
 const setRectDimensions = (rect, dimensions) => {
   const { x, y } = dimensions;
-  console.log(rect, dimensions);
 
-  return rect.x < x
-    ? {
-        ...rect,
-        width: x - rect.x,
-        height: y - rect.y
-      }
-    : {
-        ...rect,
-        width: x - rect.x,
-        height: y - rect.y
-      };
+  return {
+    ...rect,
+    width: x - rect.x,
+    height: y - rect.y
+  };
 };
 
 const rectsReducer = (state = initialState, action) => {
-  const { type, rect } = action;
+  const { type, rect, groupId } = action;
   switch (type) {
-    case APPEND_RECT:
+    case CREATE_RECT:
       return {
         ...state,
         rects: [...state.rects, rect],
@@ -45,6 +37,17 @@ const rectsReducer = (state = initialState, action) => {
             ? setRectDimensions(currentRect, rect)
             : currentRect;
         })
+      };
+    case APPEND_RECT:
+      return {
+        ...state,
+        currentRectId: '',
+        rects: state.rects.filter(({ width }) => width)
+      };
+    case REMOVE_RECTS:
+      return {
+        ...state,
+        rects: state.rects.filter((element) => groupId !== element.groupId)
       };
     default:
       return state;

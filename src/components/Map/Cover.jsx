@@ -1,37 +1,48 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Rect } from 'react-konva';
-import { connect } from 'react-redux';
-// import { addRect } from '../actions/example';
+import PropTypes from 'prop-types';
+import { connect, ReactReduxContext } from 'react-redux';
+import { removeRects } from '../../actions/rectActions';
 
-// class Cover extends Component {
-//   handleClick = () => {
-//     this.setState({
-//       color: 'red'
-//     });
-//   };
-//   render() {
-//     return (
-//       <Rect
-//         x={20}
-//         y={20}
-//         width={50}
-//         height={50}
-//         fill="#000"
-//         onClick={this.handleClick}
-//       />
-//     );
-//   }
-// }
-
-const Cover = ({ x, y, width, height }) => (
-  <Rect x={x} y={y} width={width} height={height} fill="#000" />
-);
-
-const mapStateToProps = (state) => {
-  return {
-    rect: state.rects
+class Cover extends PureComponent {
+  handleOnClick = () => {
+    const { dispatch, groupId } = this.props;
+    console.log(groupId);
+    dispatch(removeRects(groupId));
   };
-};
-const ConnectedExample = connect(mapStateToProps)(Cover);
+  render() {
+    const { x, y, width, height } = this.props;
+    return (
+      <Rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill="#000"
+        onClick={this.handleOnClick}
+      />
+    );
+  }
+}
 
-export { Cover };
+Cover.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number
+};
+
+Cover.defaultProps = {
+  x: 0,
+  y: 0,
+  width: 0,
+  height: 0
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  rects: state.rects
+});
+
+const ConnectedCover = connect(mapStateToProps)(Cover);
+
+export { ConnectedCover };

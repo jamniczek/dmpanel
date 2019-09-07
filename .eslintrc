@@ -1,7 +1,14 @@
 {
-  "extends": "react-app",
+  "extends": ["airbnb", "airbnb/hooks"],
   "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "import/prefer-default-export": "off",
+        "comma-dangle": "off",
+        "object-curly-newline": "off"
+      }
+    }
+  ]
 }
