@@ -1,7 +1,6 @@
 import { ADD_TOKEN } from "../actions/actionTypes";
 
 const addToken = (state = [], { type, tokenDetails }) => {
-  console.log(state, type, tokenDetails);
   switch (type) {
     case ADD_TOKEN:
       return [...state, tokenDetails];

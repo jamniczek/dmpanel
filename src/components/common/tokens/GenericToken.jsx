@@ -32,7 +32,7 @@ class GenericToken extends Component {
   }
 
   render() {
-    const { Component, onMouseOver, ...rest } = this.props;
+    const { Component, onMouseOver, onMouseOut, ...rest } = this.props;
     return (
       <>
         <Circle
@@ -40,6 +40,7 @@ class GenericToken extends Component {
           onMouseOver={evt => {
             return onMouseOver(evt, this.state, this.ref);
           }}
+          onMouseOut={onMouseOut}
           onDragEnd={this.onDragEnd}
           {...rest}
         />
