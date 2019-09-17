@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Container, Button } from "./styles/Styles";
+import React, { Component } from 'react';
+import { Container, Button } from './styles/Styles';
 
 class ActionButtons extends Component {
   render() {
@@ -7,11 +7,11 @@ class ActionButtons extends Component {
     return (
       <Container>
         <Button
-          onMouseOver={evt => {
-            evt.target.classList.add("mouseOver");
+          onMouseOver={(evt) => {
+            evt.target.classList.add('mouseOver');
           }}
-          onMouseOut={evt => {
-            evt.target.classList.remove("mouseOver");
+          onMouseOut={(evt) => {
+            evt.target.classList.remove('mouseOver');
           }}
           onClick={() => {
             toggleModal("addToken");
@@ -20,11 +20,11 @@ class ActionButtons extends Component {
           <span>Create Token</span>
         </Button>
         <Button
-          onMouseOver={evt => {
-            evt.target.classList.add("mouseOver");
+          onMouseOver={(evt) => {
+            evt.target.classList.add('mouseOver');
           }}
-          onMouseOut={evt => {
-            evt.target.classList.remove("mouseOver");
+          onMouseOut={(evt) => {
+            evt.target.classList.remove('mouseOver');
           }}
         >
           <span>Options</span>

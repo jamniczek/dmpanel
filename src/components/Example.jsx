@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { connect } from "react-redux";
-import { setText } from "../actions/example";
+import { connect } from 'react-redux';
+import { setText } from '../actions/example';
 
 class Example extends Component {
   render() {
@@ -10,7 +10,7 @@ class Example extends Component {
         {this.props.text}
         <button
           onClick={() => {
-            this.props.dispatch(setText("Hello"));
+            this.props.dispatch(setText('Hello'));
           }}
         >
           Hello
@@ -20,7 +20,7 @@ class Example extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     text: state.text
   };

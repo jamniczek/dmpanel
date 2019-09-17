@@ -1,12 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import reducers from "../reducers/index";
-// import { exampleReducer } from "../reducers/exampleReducer";
+import { rectsReducer } from "../reducers/rectsReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 const configureStore = () => {
-  const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+  const store = createStore(
+    rectsReducer,
+    composeEnhancers(applyMiddleware(thunk))
+  );
 
   return store;
 };
