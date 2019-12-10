@@ -63,7 +63,7 @@ class Map extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  rects: state.rects
+  rects: state.rects.rects // a se to później uporządkuj lepiej albo pozmieniaj nazwy
 });
 
 const ConnectedMap = connect(mapStateToProps)(Map);

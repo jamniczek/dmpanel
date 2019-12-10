@@ -1,10 +1,10 @@
-import React from "react";
-import SidePanelWrapper from "./styles/SidePanelWrapper";
-import { Stage, Layer, Text } from "react-konva";
-import GenericToken from "../common/tokens/GenericToken";
-import Options from "./components/Options/OptionButtonsComponent";
-import { toggleModal } from "../../actions/modals";
-import { connect } from "react-redux";
+import React from 'react';
+import { Stage, Layer, Text } from 'react-konva';
+import { connect } from 'react-redux';
+import SidePanelWrapper from './styles/SidePanelWrapper';
+import GenericToken from '../common/tokens/GenericToken';
+import Options from './components/Options/OptionButtonsComponent';
+import { toggleModal } from '../../actions/modals';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class SidePanel extends React.Component {
       width: 0,
       height: 750,
       showTooltip: false,
-      tooltipContent: "",
+      tooltipContent: '',
       mousePos: { x: 0, y: 0 }
     };
     this.sideWrapper = React.createRef();
@@ -32,11 +32,11 @@ class SidePanel extends React.Component {
 
   componentDidMount() {
     this.setDimensions();
-    window.addEventListener("resize", this.setDimensions);
+    window.addEventListener('resize', this.setDimensions);
   }
 
   onMouseOut(event, tokenState) {
-    this.setState({ showTooltip: false, tooltipContent: "" });
+    this.setState({ showTooltip: false, tooltipContent: '' });
   }
 
   onMouseOver(event, tokenState) {
@@ -50,30 +50,24 @@ class SidePanel extends React.Component {
 
   paintTokens() {
     const { height, width } = this.state;
-    return this.props.tokens.map(tokenProps => {
-      return (
-        <>
-          <GenericToken
-            onMouseOver={(event, tokenState) =>
-              this.onMouseOver(event, tokenState)
-            }
-            onMouseOut={this.onMouseOut}
-            key={tokenProps.id}
-            draggable
-            x={width / 2}
-            y={height / 2}
-            {...tokenProps}
-          />
-        </>
-      );
-    });
+    return this.props.tokens.map((tokenProps) => (
+      <>
+        <GenericToken
+          onMouseOver={(event, tokenState) => this.onMouseOver(event, tokenState)}
+          onMouseOut={this.onMouseOut}
+          key={tokenProps.id}
+          draggable
+          x={width / 2}
+          y={height / 2}
+          {...tokenProps}
+        />
+      </>
+    ));
   }
 
   render() {
-    const { toggleModal } = this.props;
+    const { toggleModal, width, height, } = this.props;
     const {
-      width,
-      height,
       tokens,
       mousePos: { x, y },
       showTooltip,
@@ -81,28 +75,27 @@ class SidePanel extends React.Component {
     } = this.state;
     return (
       <>
-        <SidePanelWrapper ref={this.sideWrapper}>
+        {/* <SidePanelWrapper ref={this.sideWrapper}>
           <Options tokens={tokens} toggleModal={toggleModal} />
-          {/* get this ^^^ shits height */}
           <Stage
             width={width}
             height={height - 66}
             onMouseMove={this.setMousePos}
-          >
-            <Layer>
-              {this.paintTokens()}
-              {showTooltip && (
-                <Text text={tooltipContent} x={x + 15} y={y + 15} />
-              )}
-            </Layer>
-          </Stage>
-        </SidePanelWrapper>
+          > */}
+        <Layer>
+          {this.paintTokens()}
+          {showTooltip && (
+          <Text text={tooltipContent} x={x + 15} y={y + 15} />
+          )}
+        </Layer>
+        {/* </Stage>
+        </SidePanelWrapper> */}
       </>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   tokens: state.tokens
 });
 

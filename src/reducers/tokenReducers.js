@@ -1,4 +1,4 @@
-import { ADD_TOKEN } from "../actions/actionTypes";
+import { ADD_TOKEN } from '../actions/actionTypes';
 
 const addToken = (state = [], { type, tokenDetails }) => {
   switch (type) {

@@ -1,8 +1,8 @@
-import { TOGGLE_MODAL } from "../actions/actionTypes";
+import { TOGGLE_MODAL } from '../actions/actionTypes';
 
 const initialState = {
   isOpen: false,
-  modalType: ""
+  modalType: ''
 };
 
 const toggleModal = (state = initialState, { type, modalType }) => {

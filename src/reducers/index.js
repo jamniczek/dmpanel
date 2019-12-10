@@ -1,10 +1,10 @@
-import { exampleReducer } from "./exampleReducer";
-import modal from "./modals";
-import tokenReducers from "./tokenReducers";
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
+import modal from './modals';
+import tokenReducers from './tokenReducers';
+import { rectsReducer } from './rectsReducer';
 
 export default combineReducers({
-  exampleReducer,
   modal,
-  tokens: tokenReducers
+  tokens: tokenReducers,
+  rects: rectsReducer
 });

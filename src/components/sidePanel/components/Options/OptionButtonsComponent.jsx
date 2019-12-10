@@ -14,7 +14,7 @@ class ActionButtons extends Component {
             evt.target.classList.remove('mouseOver');
           }}
           onClick={() => {
-            toggleModal("addToken");
+            toggleModal('addToken');
           }}
         >
           <span>Create Token</span>
